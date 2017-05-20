@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -23,37 +23,41 @@
             <Button
                 android:id="@+id/btnL1"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="L1"/>
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/ic_btn_l1"/>
 
             <Button
                 android:id="@+id/btnL2"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="L2"/>
-
-            <Button
-                android:id="@+id/btnR2"
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R2"/>
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/ic_btn_l2"/>
 
             <Button
                 android:id="@+id/btnR1"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R1"/>
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/ic_btn_r1"/>
+
+            <Button
+                android:id="@+id/btnR2"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/ic_btn_r2"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/circle"
             android:gravity="center"
             android:orientation="vertical">
@@ -63,16 +67,17 @@
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@mipmap/ic_btn_y"/>
+                android:background="@mipmap/ic_btn_y"
+                android:paddingTop="5dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginTop="-10dp"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp">
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
                 <Button
                     android:id="@+id/btnX"
@@ -82,8 +87,8 @@
                     android:background="@mipmap/ic_btn_x"/>
 
                 <View
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
 
                 <Button
                     android:id="@+id/btnB"
@@ -99,7 +104,8 @@
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@mipmap/ic_btn_a"/>
+                android:background="@mipmap/ic_btn_a"
+                android:paddingBottom="5dp"/>
         </LinearLayout>
 
         <TextView
@@ -112,43 +118,58 @@
             android:paddingTop="10dp"
             android:text="No data recieved yet ..."
             android:textAlignment="center"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnSelect"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select"/>
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/gray"
+                android:text="Select"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/btnOn"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="On"/>
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray"
+                android:text="On"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
 
             <Button
                 android:id="@+id/btnStart"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start"/>
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/gray"
+                android:text="Start"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/img_arrows"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/ic_btn_arrows"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -156,8 +177,7 @@
                 android:id="@+id/btnUp"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Up"/>
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -168,15 +188,13 @@
                     android:id="@+id/btnLeft"
                     style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Left"/>
+                    android:layout_height="wrap_content"/>
 
                 <Button
                     android:id="@+id/btnRight"
                     style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Right"/>
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
@@ -184,8 +202,7 @@
                 android:id="@+id/btnDown"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Down"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
 

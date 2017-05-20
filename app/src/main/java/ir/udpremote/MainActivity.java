@@ -2,15 +2,24 @@ package ir.udpremote;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.orhanobut.dialogplus.DialogPlus;
@@ -220,32 +229,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        LinearLayout arrows = (LinearLayout) findViewById(R.id.img_arrows);
+
         switch (v.getId()) {
             case R.id.btnOn:
                 changePortAndIPDialog.show();
                 break;
             case R.id.btnUp:
+                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_up_pressed);
                 sendPacket("UP");
                 break;
             case R.id.btnDown:
+                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_down_pressed);
                 sendPacket("DOWN");
                 break;
             case R.id.btnRight:
+                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_right_pressed);
                 sendPacket("RIGHT");
                 break;
             case R.id.btnLeft:
+                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_left_pressed);
                 sendPacket("LEFT");
                 break;
             case R.id.btnY:
+                changeButtonImage(v, R.mipmap.ic_btn_y, R.mipmap.ic_btn_y_pressed);
                 sendPacket("Y");
                 break;
             case R.id.btnA:
+                changeButtonImage(v, R.mipmap.ic_btn_a, R.mipmap.ic_btn_a_pressed);
                 sendPacket("A");
                 break;
             case R.id.btnB:
+                changeButtonImage(v, R.mipmap.ic_btn_b, R.mipmap.ic_btn_b_pressed);
                 sendPacket("B");
                 break;
             case R.id.btnX:
+                changeButtonImage(v, R.mipmap.ic_btn_x, R.mipmap.ic_btn_x_pressed);
                 sendPacket("X");
                 break;
             case R.id.btnStart:
@@ -255,15 +274,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sendPacket("SELECT");
                 break;
             case R.id.btnL1:
+                changeButtonImage(v, R.mipmap.ic_btn_l1, R.mipmap.ic_btn_l1_pressed);
                 sendPacket("L1");
                 break;
             case R.id.btnL2:
+                changeButtonImage(v, R.mipmap.ic_btn_l2, R.mipmap.ic_btn_l2_pressed);
                 sendPacket("L2");
                 break;
             case R.id.btnR1:
+                changeButtonImage(v, R.mipmap.ic_btn_r1, R.mipmap.ic_btn_r1_pressed);
                 sendPacket("R1");
                 break;
             case R.id.btnR2:
+                changeButtonImage(v, R.mipmap.ic_btn_r2, R.mipmap.ic_btn_r2_pressed);
                 sendPacket("R2");
                 break;
         }
@@ -325,5 +348,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return null;
         }
+    }
+
+    void changeButtonImage(final View v, final int imageId, final int newImageId) {
+        v.setBackground(ContextCompat.getDrawable(getBaseContext(), newImageId));
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                v.setBackground(ContextCompat.getDrawable(getBaseContext(), imageId));
+            }
+        }, 2000);
     }
 }
