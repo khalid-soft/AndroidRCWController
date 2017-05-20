@@ -8,7 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="14dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -51,43 +54,52 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:background="@drawable/circle"
             android:gravity="center"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/btnY"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Y"/>
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/ic_btn_y"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp">
 
                 <Button
                     android:id="@+id/btnX"
                     style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="X"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@mipmap/ic_btn_x"/>
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
 
                 <Button
                     android:id="@+id/btnB"
                     style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="B"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@mipmap/ic_btn_b"/>
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnA"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A"/>
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/ic_btn_a"/>
         </LinearLayout>
 
         <TextView
