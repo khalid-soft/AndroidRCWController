@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -41,7 +42,7 @@ import butterknife.ButterKnife;
 import static android.R.attr.cacheColorHint;
 import static android.R.attr.data;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements Button.OnTouchListener {
 
     static String serverIP = "192.168.4.1";
     static String serverPort = "10000";
@@ -162,21 +163,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
 
-        btnL1.setOnClickListener(this);
-        btnL2.setOnClickListener(this);
-        btnR1.setOnClickListener(this);
-        btnR2.setOnClickListener(this);
-        btnA.setOnClickListener(this);
-        btnB.setOnClickListener(this);
-        btnX.setOnClickListener(this);
-        btnY.setOnClickListener(this);
-        btnSelect.setOnClickListener(this);
-        btnStart.setOnClickListener(this);
-        btnOn.setOnClickListener(this);
-        btnUp.setOnClickListener(this);
-        btnLeft.setOnClickListener(this);
-        btnRight.setOnClickListener(this);
-        btnDown.setOnClickListener(this);
+        btnL1.setOnTouchListener(this);
+        btnL2.setOnTouchListener(this);
+        btnR1.setOnTouchListener(this);
+        btnR2.setOnTouchListener(this);
+        btnA.setOnTouchListener(this);
+        btnB.setOnTouchListener(this);
+        btnX.setOnTouchListener(this);
+        btnY.setOnTouchListener(this);
+        btnSelect.setOnTouchListener(this);
+        btnStart.setOnTouchListener(this);
+        btnOn.setOnTouchListener(this);
+        btnUp.setOnTouchListener(this);
+        btnLeft.setOnTouchListener(this);
+        btnRight.setOnTouchListener(this);
+        btnDown.setOnTouchListener(this);
 
         txtIPPort.setText(serverIP + ":" + serverPort);
 
@@ -225,71 +226,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ip3.setText(sPref.getString("ip3", "4"));
         ip4.setText(sPref.getString("ip4", "1"));
         port.setText(sPref.getString("port", "10000"));
-    }
-
-    @Override
-    public void onClick(View v) {
-        LinearLayout arrows = (LinearLayout) findViewById(R.id.img_arrows);
-
-        switch (v.getId()) {
-            case R.id.btnOn:
-                changePortAndIPDialog.show();
-                break;
-            case R.id.btnUp:
-                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_up_pressed);
-                sendPacket("UP");
-                break;
-            case R.id.btnDown:
-                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_down_pressed);
-                sendPacket("DOWN");
-                break;
-            case R.id.btnRight:
-                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_right_pressed);
-                sendPacket("RIGHT");
-                break;
-            case R.id.btnLeft:
-                changeButtonImage(arrows, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_left_pressed);
-                sendPacket("LEFT");
-                break;
-            case R.id.btnY:
-                changeButtonImage(v, R.mipmap.ic_btn_y, R.mipmap.ic_btn_y_pressed);
-                sendPacket("Y");
-                break;
-            case R.id.btnA:
-                changeButtonImage(v, R.mipmap.ic_btn_a, R.mipmap.ic_btn_a_pressed);
-                sendPacket("A");
-                break;
-            case R.id.btnB:
-                changeButtonImage(v, R.mipmap.ic_btn_b, R.mipmap.ic_btn_b_pressed);
-                sendPacket("B");
-                break;
-            case R.id.btnX:
-                changeButtonImage(v, R.mipmap.ic_btn_x, R.mipmap.ic_btn_x_pressed);
-                sendPacket("X");
-                break;
-            case R.id.btnStart:
-                sendPacket("START");
-                break;
-            case R.id.btnSelect:
-                sendPacket("SELECT");
-                break;
-            case R.id.btnL1:
-                changeButtonImage(v, R.mipmap.ic_btn_l1, R.mipmap.ic_btn_l1_pressed);
-                sendPacket("L1");
-                break;
-            case R.id.btnL2:
-                changeButtonImage(v, R.mipmap.ic_btn_l2, R.mipmap.ic_btn_l2_pressed);
-                sendPacket("L2");
-                break;
-            case R.id.btnR1:
-                changeButtonImage(v, R.mipmap.ic_btn_r1, R.mipmap.ic_btn_r1_pressed);
-                sendPacket("R1");
-                break;
-            case R.id.btnR2:
-                changeButtonImage(v, R.mipmap.ic_btn_r2, R.mipmap.ic_btn_r2_pressed);
-                sendPacket("R2");
-                break;
-        }
     }
 
     private void sendPacket(final String key) {
@@ -350,13 +286,67 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    void changeButtonImage(final View v, final int imageId, final int newImageId) {
-        v.setBackground(ContextCompat.getDrawable(getBaseContext(), newImageId));
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                v.setBackground(ContextCompat.getDrawable(getBaseContext(), imageId));
-            }
-        }, 2000);
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        LinearLayout arrows = (LinearLayout) findViewById(R.id.img_arrows);
+        int action = event.getAction();
+
+        switch (v.getId()) {
+            case R.id.btnOn:
+                changePortAndIPDialog.show();
+                break;
+            case R.id.btnUp:
+                buttonClicked(arrows, "UP", action, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_up_pressed);
+                break;
+            case R.id.btnDown:
+                buttonClicked(arrows, "DOWN", action, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_down_pressed);
+                break;
+            case R.id.btnRight:
+                buttonClicked(arrows, "RIGHT", action, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_right_pressed);
+                break;
+            case R.id.btnLeft:
+                buttonClicked(arrows, "LEFT", action, R.mipmap.ic_btn_arrows, R.mipmap.ic_btn_arrows_left_pressed);
+                break;
+            case R.id.btnY:
+                buttonClicked(v, "Y", action, R.mipmap.ic_btn_y, R.mipmap.ic_btn_y_pressed);
+                break;
+            case R.id.btnA:
+                buttonClicked(v, "A", action, R.mipmap.ic_btn_a, R.mipmap.ic_btn_a_pressed);
+                break;
+            case R.id.btnB:
+                buttonClicked(v, "B", action, R.mipmap.ic_btn_b, R.mipmap.ic_btn_b_pressed);
+                break;
+            case R.id.btnX:
+                buttonClicked(v, "X", action, R.mipmap.ic_btn_x, R.mipmap.ic_btn_x_pressed);
+                break;
+            case R.id.btnStart:
+                sendPacket("START");
+                break;
+            case R.id.btnSelect:
+                sendPacket("SELECT");
+                break;
+            case R.id.btnL1:
+                buttonClicked(v, "L1", action, R.mipmap.ic_btn_l1, R.mipmap.ic_btn_l1_pressed);
+                break;
+            case R.id.btnL2:
+                buttonClicked(v, "L2", action, R.mipmap.ic_btn_l2, R.mipmap.ic_btn_l2_pressed);
+                break;
+            case R.id.btnR1:
+                buttonClicked(v, "R1", action, R.mipmap.ic_btn_r1, R.mipmap.ic_btn_r1_pressed);
+                break;
+            case R.id.btnR2:
+                buttonClicked(v, "R2", action, R.mipmap.ic_btn_r2, R.mipmap.ic_btn_r2_pressed);
+                break;
+        }
+        return true;
+    }
+
+    void buttonClicked(View v, String packet, int action, int defaultImage, int pressedImage) {
+        if (action == MotionEvent.ACTION_DOWN) {
+            v.setBackground(ContextCompat.getDrawable(getBaseContext(), pressedImage));
+            sendPacket(packet);
+        } else if (action == MotionEvent.ACTION_UP) {
+            v.setBackground(ContextCompat.getDrawable(getBaseContext(), defaultImage));
+        }
     }
 }
